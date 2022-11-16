@@ -9,9 +9,9 @@ namespace ElevatorApi.Controllers;
 
 public class ElevatorController : ControllerBase
 {  
-    private readonly ElevatorContext _context;
+    private readonly RocketElevatorContext _context;
 
-    public ElevatorController(ElevatorContext context)
+    public ElevatorController(RocketElevatorContext context)
     {
         _context = context;
     }
