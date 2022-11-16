@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\glory\\RocketApi\\RocketApi.csproj": {}
+    "C:\\Users\\hocke\\Desktop\\Api\\Rocket_Elevators_API\\RocketApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\glory\\RocketApi\\RocketApi.csproj": {
+    "C:\\Users\\hocke\\Desktop\\Api\\Rocket_Elevators_API\\RocketApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\glory\\RocketApi\\RocketApi.csproj",
+        "projectUniqueName": "C:\\Users\\hocke\\Desktop\\Api\\Rocket_Elevators_API\\RocketApi.csproj",
         "projectName": "RocketApi",
-        "projectPath": "C:\\Users\\glory\\RocketApi\\RocketApi.csproj",
-        "packagesPath": "C:\\Users\\glory\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\glory\\RocketApi\\obj\\",
+        "projectPath": "C:\\Users\\hocke\\Desktop\\Api\\Rocket_Elevators_API\\RocketApi.csproj",
+        "packagesPath": "C:\\Users\\hocke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hocke\\Desktop\\Api\\Rocket_Elevators_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\glory\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hocke\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
