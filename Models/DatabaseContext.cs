@@ -16,10 +16,5 @@ namespace RocketApi.Models
         {
             return batteries;
         }
-        
-        public batteries GetItem(int id)
-        {
-            return batteries.Where(batteries => batteries.Id == id).SingleOrDefault();
-        }
     }
 }

@@ -8,7 +8,7 @@ namespace RocketApi.Models
     public class batteries
     {
         public int Id { get; set; }
-        public string? status { get; set; }
+        public string status { get; set; }
 
     }
 }

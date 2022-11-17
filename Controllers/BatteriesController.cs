@@ -29,16 +29,19 @@ public class batteriesController : ControllerBase
 
     // GET: api/batteries/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<batteries>> GetItem(int id)
+    public async Task<ActionResult<String>> GetItem(int id)
     {
-        var item = await this._context.batteries.FindAsync(id);
+        var item = await _context.batteries.FindAsync(id);
 
             if (item == null)
             {
                 return NotFound();
+            }else if (item.status == null)
+            {
+                return NotFound();
             }
 
-            return item;
+            return item.status;
         }
 
 }
