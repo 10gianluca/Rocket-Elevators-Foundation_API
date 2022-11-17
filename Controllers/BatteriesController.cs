@@ -42,6 +42,5 @@ public class batteriesController : ControllerBase
             }
 
             return item.status;
-        }
-
+    }
 }
