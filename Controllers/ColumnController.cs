@@ -29,14 +29,22 @@ public class ColumnController : ControllerBase
 
     //GET: api/Column/5
     [HttpGet("{id}")]
-    public string Get(int id)
+    public async Task<ActionResult<string>> GetColumnStatus(int id)
     {
-        return "value";
+        var column = await _context.columns.FindAsync(id);
+        if(column == null) { return "no Column with this id"; }
+        SetNewColumnStatus(column.id, "Active");
+        return column.status;
     }
-    //PUT: api/Column/5
-    [HttpDelete("{id}")]
-    public void Delete(int id)
+
+    //PUT: api/Column/5 THIS LINE SHOULD REPLACE THE VALUE OF THE STATUS WITH WHATEVER WE WANT
+    [HttpPut("{id}")]
+    public async Task<ActionResult<string>> SetNewColumnStatus(int id, string newStatus)
     {
+        var column = await _context.columns.FindAsync(id);
+        column.status = newStatus;
+        _context.SaveChanges();
+        return column.status;
     }
 }
 

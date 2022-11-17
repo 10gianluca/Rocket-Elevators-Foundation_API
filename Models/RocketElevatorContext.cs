@@ -13,7 +13,6 @@ namespace RocketApi.Models
 
         public DbSet<Elevator> elevators { get; set; } = null!;
 
-        public DbSet<Column> columns { get; set; } =
-        null!;
+        public DbSet<Column> columns { get; set; } = null!;
     }
 }

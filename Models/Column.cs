@@ -7,7 +7,7 @@ namespace RocketApi.Models
 {
     public class Column 
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string? status { get; set; }
     }
 }
