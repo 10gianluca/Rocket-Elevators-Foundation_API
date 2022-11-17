@@ -20,5 +20,11 @@ namespace RocketApi.Models
         {
             return batteries;
         }
+
+        public IEnumerable<batteries> PostBatteries()
+        {
+            return batteries;
+        }
+
     }
 }

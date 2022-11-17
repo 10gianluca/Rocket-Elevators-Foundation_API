@@ -29,19 +29,38 @@ public class ElevatorController : ControllerBase
 
     // GET: api/Elevator/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<String>> GetItem(int id){
-        var item = await _context.batteries.FindAsync(id);
+    public async Task<ActionResult<String>> GetElevator(int id)
+    {
+        var elevator = await _context.elevators.FindAsync(id);
 
-            if (item == null)
+            if (elevator == null)
             {
                 return NotFound();
-            }else if (item.status == null)
+            }else if (elevator.status == null)
             {
                 return NotFound();
             }
 
-            return item.status;
+            return elevator.status;
     }
+
+     [HttpPut("{id}/{status}")]
+        public async Task<ActionResult<Elevator>> UpdateElevatorStatus([FromRoute] int id, [FromRoute] string status)
+        {
+            var elevator = await this._context.elevators.FindAsync(id);
+
+            if (elevator == null)
+            {
+                return NotFound();
+            } 
+            
+            elevator.status = status;
+
+            this._context.elevators.Update(elevator);
+            await this._context.SaveChangesAsync();
+
+            return elevator;
+        }
     
 
 }

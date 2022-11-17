@@ -32,20 +32,33 @@ public class ColumnController : ControllerBase
     public async Task<ActionResult<string>> GetColumnStatus(int id)
     {
         var column = await _context.columns.FindAsync(id);
-        if(column == null) { return "no Column with this id"; }
-        SetNewColumnStatus(column.id, "Active");
-        return column.status;
+            if(column == null) 
+            { 
+                return NotFound(); 
+            }else if (column.status == null)
+            {
+                return NotFound();
+            }
+            return column.status;
     }
 
-    //PUT: api/Column/5 THIS LINE SHOULD REPLACE THE VALUE OF THE STATUS WITH WHATEVER WE WANT
-    [HttpPut("{id}")]
-    public async Task<ActionResult<string>> SetNewColumnStatus(int id, string newStatus)
-    {
-        var column = await _context.columns.FindAsync(id);
-        column.status = newStatus;
-        _context.SaveChanges();
-        return column.status;
-    }
+     [HttpPut("{id}/{status}")]
+        public async Task<ActionResult<Column>> UpdateColumnStatus([FromRoute] int id, [FromRoute] string status)
+        {
+            var column = await this._context.columns.FindAsync(id);
+
+            if (column == null)
+            {
+                return NotFound();
+            } 
+            
+            column.status = status;
+
+            this._context.columns.Update(column);
+            await this._context.SaveChangesAsync();
+
+            return column;
+        }
 }
 
 

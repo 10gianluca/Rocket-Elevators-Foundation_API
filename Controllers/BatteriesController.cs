@@ -29,18 +29,35 @@ public class batteriesController : ControllerBase
 
     // GET: api/batteries/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<String>> GetItem(int id)
+    public async Task<ActionResult<String>> GetBatteries(int id)
     {
-        var item = await _context.batteries.FindAsync(id);
+        var batteries = await _context.batteries.FindAsync(id);
 
-            if (item == null)
+            if (batteries == null)
             {
                 return NotFound();
-            }else if (item.status == null)
+            }else if (batteries.status == null)
             {
                 return NotFound();
             }
 
-            return item.status;
+            return batteries.status;
     }
+         [HttpPut("{id}/{status}")]
+        public async Task<ActionResult<batteries>> UpdateBatteryStatus([FromRoute] int id, [FromRoute] string status)
+        {
+            var batteries = await this._context.batteries.FindAsync(id);
+
+            if (batteries == null)
+            {
+                return NotFound();
+            } 
+            
+            batteries.status = status;
+
+            this._context.batteries.Update(batteries);
+            await this._context.SaveChangesAsync();
+
+            return batteries;
+        }
 }
