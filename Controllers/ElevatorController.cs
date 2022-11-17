@@ -58,7 +58,6 @@ public class ElevatorController : ControllerBase
 
             this._context.elevators.Update(elevator);
             await this._context.SaveChangesAsync();
-
             return elevator;
         }
     
