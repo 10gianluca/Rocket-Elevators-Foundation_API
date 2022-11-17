@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RocketApi.Models
+namespace RocketApi.Models 
 {
-    public class batteries
+    public class Column 
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string? status { get; set; }
-
     }
 }

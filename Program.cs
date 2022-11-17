@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 28));
-builder.Services.AddDbContext<DatabaseContext>(options =>
+builder.Services.AddDbContext<RocketElevatorContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), serverVersion));
 //builder.Services.AddSwaggerGen(c =>
 //{

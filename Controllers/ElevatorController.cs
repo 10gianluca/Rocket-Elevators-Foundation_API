@@ -2,24 +2,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RocketApi.Models;
 
-namespace batteriesApi.Controllers;
+namespace ElevatorApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 
-public class batteriesController : ControllerBase
+public class ElevatorController : ControllerBase
 {  
     private readonly RocketElevatorContext _context;
 
-    public batteriesController(RocketElevatorContext context)
+    public ElevatorController(RocketElevatorContext context)
     {
         _context = context;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<batteries>>> GetbatteriesItems()
+    public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorItems()
     {
-        return await _context.batteries.ToListAsync();
+        return await _context.elevators.ToListAsync();
     }
 
     private IActionResult View()
@@ -27,10 +27,9 @@ public class batteriesController : ControllerBase
         throw new NotImplementedException();
     }
 
-    // GET: api/batteries/5
+    // GET: api/Elevator/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<String>> GetItem(int id)
-    {
+    public async Task<ActionResult<String>> GetItem(int id){
         var item = await _context.batteries.FindAsync(id);
 
             if (item == null)
@@ -43,4 +42,6 @@ public class batteriesController : ControllerBase
 
             return item.status;
     }
+    
+
 }
