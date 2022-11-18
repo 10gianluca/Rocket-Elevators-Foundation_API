@@ -16,7 +16,7 @@ namespace RocketApi.Models
         public DbSet<Column> columns { get; set; } = null!;
         public DbSet<batteries> batteries { get; set; } = null!;
 
-       
+        public DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Building> Buildings { get; set; } = null!;
         public virtual DbSet<BuildingDetail> BuildingDetails { get; set; } = null!;
        // public virtual DbSet<BuildingType> BuildingTypes { get; set; } = null!;
@@ -101,7 +101,63 @@ namespace RocketApi.Models
                     .HasColumnName("updated_at");
             });
         
-       
+        modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.ToTable("customers");
+
+                entity.HasIndex(e => e.UserId, "index_customers_on_user_id");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+               
+
+                entity.Property(e => e.CompanyName)
+                    .HasMaxLength(255)
+                    .HasColumnName("company_name");
+
+                entity.Property(e => e.ContactPhone)
+                    .HasMaxLength(255)
+                    .HasColumnName("company_contact_phone");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at");
+
+                entity.Property(e => e.DateCreation)
+                    .HasColumnType("datetime")
+                    .HasColumnName("customer_creation_date");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(255)
+                    .HasColumnName("company_description");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .HasColumnName("email_of_company_contact");
+
+                entity.Property(e => e.FullName)
+                    .HasMaxLength(255)
+                    .HasColumnName("full_name_of_company_contact");
+
+                entity.Property(e => e.FullNameTechnicalAuthority)
+                    .HasMaxLength(255)
+                    .HasColumnName("full_name_of_service_technical_authority");
+
+                entity.Property(e => e.TechnicalAuthorityEmail)
+                    .HasMaxLength(255)
+                    .HasColumnName("technical_manager_email_for_service");
+
+                entity.Property(e => e.TechnicalAuthorityPhone)
+                    .HasMaxLength(255)
+                    .HasColumnName("technical_authority_phone_for_service");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+            });
+        
              
             
             modelBuilder.Entity<Building>(entity =>
@@ -197,7 +253,7 @@ namespace RocketApi.Models
                  entity.Property(e => e.status)
                     .HasMaxLength(255)
                     .HasColumnName("status");
-            });
+            });   
 
 
 }}}
