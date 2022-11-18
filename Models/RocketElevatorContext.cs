@@ -19,7 +19,7 @@ namespace RocketApi.Models
         public DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Building> Buildings { get; set; } = null!;
         public virtual DbSet<BuildingDetail> BuildingDetails { get; set; } = null!;
-        public virtual DbSet<BuildingType> BuildingTypes { get; set; } = null!;
+       // public virtual DbSet<BuildingType> BuildingTypes { get; set; } = null!;
        
         public virtual DbSet<Lead> Lead { get; set; } = null!;
          
@@ -158,36 +158,102 @@ namespace RocketApi.Models
                 entity.Property(e => e.UserId).HasColumnName("user_id");
             });
         
-              modelBuilder.Entity<BuildingType>(entity =>
+             
+            
+            modelBuilder.Entity<Building>(entity =>
             {
-                entity.ToTable("building_types");
+                entity.ToTable("buildings");
+
+                entity.HasIndex(e => e.CustomerId, "index_buildings_on_customer_id");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.CompanyName)
+                entity.Property(e => e.AddressOfBuilding)
                     .HasMaxLength(255)
-                    .HasColumnName("companyName");
+                    .HasColumnName("Address_of_the_building");
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("created_at");
 
-                entity.Property(e => e.Email)
+                entity.Property(e => e.CustomerId).HasColumnName("customer_id");
+
+                entity.Property(e => e.EmailBuildingAdmin)
                     .HasMaxLength(255)
-                    .HasColumnName("email");
+                    .HasColumnName("Email_of_the_administrator_of_the_building");
 
-                entity.Property(e => e.NumberApartments).HasColumnName("number_apartments");
+                entity.Property(e => e.EmailTechnicalAuthority)
+                    .HasMaxLength(255)
+                    .HasColumnName("Technical_contact_email_for_the_building");
 
-                entity.Property(e => e.NumberElevators).HasColumnName("number_elevators");
+                entity.Property(e => e.FullNameBuildingAdmin)
+                    .HasMaxLength(255)
+                    .HasColumnName("Full_Name_of_the_building_administrator");
 
-                entity.Property(e => e.NumberFloors).HasColumnName("number_floors");
+                entity.Property(e => e.FullNameTechnicalAuthority)
+                    .HasMaxLength(255)
+                    .HasColumnName("Full_Name_of_the_technical_contact_for_the_building");
 
-                entity.Property(e => e.NumberOccupants).HasColumnName("number_occupants");
+                entity.Property(e => e.PhoneBuildingAdmin)
+                    .HasMaxLength(255)
+                    .HasColumnName("Phone_number_of_the_building_administrator");
+
+                entity.Property(e => e.PhoneTechnicalAuthority)
+                    .HasMaxLength(255)
+                    .HasColumnName("Technical_contact_phone_for_the_building");
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("updated_at");
             });
-        }}
 
-}
+            modelBuilder.Entity<BuildingDetail>(entity =>
+            {
+                entity.ToTable("buildings_details");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.BuildingId).HasColumnName("building_id");
+
+                entity.Property(e => e.InformationKey).HasMaxLength(255);
+
+                entity.Property(e => e.Value).HasColumnType("text");
+            });
+            modelBuilder.Entity<Column>(entity =>
+            {
+                entity.ToTable("columns");
+                entity.HasIndex(e => e.battery_id, "index_columns_on_battery_id");
+                entity.Property( e => e.id).HasColumnName ("id");
+                entity.Property( e => e.battery_id).HasColumnName("battery_id");
+                
+                entity.Property(e =>e.status)
+                .HasMaxLength(255)
+                .HasColumnName("status");
+            });
+
+           modelBuilder.Entity<batteries>(entity =>
+            {
+                entity.ToTable("batteries");
+                entity.HasIndex(e => e.building_id, "index_columns_on_building_id");
+                entity.Property( e => e.Id).HasColumnName ("id");
+                entity.Property( e => e.building_id).HasColumnName("building_id");
+                
+                entity.Property(e =>e.status)
+                .HasMaxLength(255)
+                .HasColumnName("status");
+            });
+              modelBuilder.Entity<Elevator>(entity =>
+            {
+                entity.ToTable("elevators");
+
+                entity.HasIndex(e => e.column_id, "index_elevators_on_column_id");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                 entity.Property(e => e.status)
+                    .HasMaxLength(255)
+                    .HasColumnName("status");
+            });   
+
+
+}}}

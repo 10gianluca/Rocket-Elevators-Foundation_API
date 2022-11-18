@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using RocketApi.Models;
+
 namespace RocketApi
 {
     public partial class Building
@@ -13,8 +15,10 @@ namespace RocketApi
         public string EmailTechnicalAuthority { get; set; } = null!;
         public string PhoneTechnicalAuthority { get; set; } = null!;
         public long? CustomerId { get; set; }
+        public List<batteries> Batteries { get; set;}
     
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+       
     }
 }
