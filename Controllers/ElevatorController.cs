@@ -60,6 +60,13 @@ public class ElevatorController : ControllerBase
             await this._context.SaveChangesAsync();
             return elevator;
         }
-    
+    [HttpGet("Status")]
+    public async Task<ActionResult<IEnumerable<Elevator>>> GetElevatorStat()
+    {
+        return await _context.elevators.Where(e=>(e.status == "Inactive")).ToListAsync();
+        {
+
+        };
+    }
 
 }
