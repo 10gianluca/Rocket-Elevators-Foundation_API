@@ -11,8 +11,8 @@ namespace RocketApi.Models
         public int Id { get; set; }
         public string? status { get; set; }
         public List<Column> Columns { get; set;}
-         public long? BuildingId { get; set; }
-        [ForeignKey("BuildingId")]
+         public long? building_id { get; set; }
+        [ForeignKey("building_id")]
          public Building Building { get; set; }
 
     }

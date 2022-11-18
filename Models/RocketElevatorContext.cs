@@ -222,15 +222,38 @@ namespace RocketApi.Models
             modelBuilder.Entity<Column>(entity =>
             {
                 entity.ToTable("columns");
-                entity.HasIndex(e => e.batteriesId, "index_columns_on_battery_id");
+                entity.HasIndex(e => e.battery_id, "index_columns_on_battery_id");
                 entity.Property( e => e.id).HasColumnName ("id");
-                entity.Property( e => e.batteriesId).HasColumnName("battery_id");
+                entity.Property( e => e.battery_id).HasColumnName("battery_id");
                 
                 entity.Property(e =>e.status)
                 .HasMaxLength(255)
                 .HasColumnName("status");
             });
-               
-        }}
 
-}
+           modelBuilder.Entity<batteries>(entity =>
+            {
+                entity.ToTable("batteries");
+                entity.HasIndex(e => e.building_id, "index_columns_on_building_id");
+                entity.Property( e => e.Id).HasColumnName ("id");
+                entity.Property( e => e.building_id).HasColumnName("building_id");
+                
+                entity.Property(e =>e.status)
+                .HasMaxLength(255)
+                .HasColumnName("status");
+            });
+              modelBuilder.Entity<Elevator>(entity =>
+            {
+                entity.ToTable("elevators");
+
+                entity.HasIndex(e => e.column_id, "index_elevators_on_column_id");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                 entity.Property(e => e.status)
+                    .HasMaxLength(255)
+                    .HasColumnName("status");
+            });
+
+
+}}}

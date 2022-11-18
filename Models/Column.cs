@@ -10,8 +10,8 @@ namespace RocketApi.Models
     {
         public int id { get; set; }
         public string? status { get; set; }
-         public List<Elevator> Elevators { get; set;}
-           public int batteriesId { get; set; }
+        public List<Elevator> Elevators { get; set;}
+        public int battery_id { get; set; }
         [ForeignKey("battery_id")]
         public batteries batteries { get; set; }
     }

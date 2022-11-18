@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using RocketApi;
 using Microsoft.EntityFrameworkCore;
 using RocketApi.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RocketApi.Controllers{
     [Route("api/[controller]")]
@@ -9,7 +10,7 @@ namespace RocketApi.Controllers{
     public class BuildingController : ControllerBase{
         private readonly RocketElevatorContext _context;
         public BuildingController(RocketElevatorContext context) => _context = context;
-        [HttpGet]
+        [HttpGet("Intervention")]
         public async Task<IActionResult> GetBuildingsWhoNeedIntervention() {
             var buildings = _context.Buildings.Where(b => b.Batteries.Any(bat => bat.status == "Intervention" || bat.Columns
             .Any(c => c.status == "Intervention" || c.Elevators
