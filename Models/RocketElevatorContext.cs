@@ -13,6 +13,8 @@ namespace RocketApi.Models
 
         public DbSet<Elevator> elevators { get; set; } = null!;
 
+        public DbSet<Intervention> interventions { get; set; } = null!;
+
         public DbSet<Column> columns { get; set; } = null!;
         public DbSet<batteries> batteries { get; set; } = null!;
 
@@ -34,12 +36,22 @@ namespace RocketApi.Models
             return batteries;
         }
 
+        public IEnumerable<Intervention> GetIntervention()
+        {
+            return interventions;
+        }
+
+        public IEnumerable<Intervention> GetInterventionItems()
+        {
+            return interventions;
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=ls-f2d6bd226744c0fcfc2009d804298a21ce412d05.crydppxblqbm.ca-central-1.rds.amazonaws.com;port=3306;database=GianlucaCiccone;uid=academy;password=HeAz+=Sc-8CJ3bXv", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
+                optionsBuilder.UseMySql("server=localhost;port=3306;database=rocketElevatorGroupWebsite_development;uid=root;password=mynewpassword", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
             }
         }
 
@@ -242,7 +254,8 @@ namespace RocketApi.Models
                 .HasMaxLength(255)
                 .HasColumnName("status");
             });
-              modelBuilder.Entity<Elevator>(entity =>
+
+            modelBuilder.Entity<Elevator>(entity =>
             {
                 entity.ToTable("elevators");
 
@@ -254,6 +267,41 @@ namespace RocketApi.Models
                     .HasMaxLength(255)
                     .HasColumnName("status");
             });   
+
+            modelBuilder.Entity<Intervention>(entity =>
+            {
+                entity.ToTable("interventions");
+
+                entity.HasIndex(e => e.Id, "id");
+
+                entity.Property(e => e.Author).HasColumnName("Author");
+
+                entity.Property(e => e.CustomerID).HasColumnName("CustomerID");
+                
+                entity.Property(e => e.BuildingID).HasColumnName("BuildingID");
+
+                entity.Property(e => e.BatteryID).HasColumnName("BatteryID");
+
+                entity.Property(e => e.ColumnID).HasColumnName("ColumnID");
+
+                entity.Property(e => e.ElevatorID).HasColumnName("ElevatorID");
+
+                entity.Property(e => e.EmployeeID).HasColumnName("EmployeeID");
+
+                entity.Property(e => e.StartDate).HasColumnName("StartDate");
+
+                entity.Property(e => e.EndDate).HasColumnName("EndDate");
+
+                entity.Property(e => e.Result).HasColumnName("Result");
+
+                entity.Property(e => e.Report).HasColumnName("Report");
+
+                entity.Property(e => e.Status).HasColumnName("Status");
+
+
+
+            });   
+
 
 
 }}}
