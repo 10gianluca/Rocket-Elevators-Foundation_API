@@ -76,7 +76,7 @@ public class InterventionController : ControllerBase
         {
             return value.ToString("yyyyMMddHHmmssffff");
         }
-        String timeStamp = GetTimestamp(DateTime.Now);cd de
+        String timeStamp = GetTimestamp(DateTime.Now);
 
         
         InterventionEnd.Status = "Completed";
