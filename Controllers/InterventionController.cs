@@ -28,7 +28,7 @@ public class InterventionController : ControllerBase
     }
 
     // GET: api/Elevator/5
-    [HttpGet("Status")]
+    [HttpGet("status")]
     public async Task<ActionResult<IEnumerable<Intervention>>> GetInterventionStat()
     {
         return await _context.interventions.Where(e=>(e.Status == "Pending")).ToListAsync();
