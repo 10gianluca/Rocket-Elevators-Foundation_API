@@ -24,6 +24,9 @@ namespace RocketApi.Models
        // public virtual DbSet<BuildingType> BuildingTypes { get; set; } = null!;
        
         public virtual DbSet<Lead> Lead { get; set; } = null!;
+
+        public DbSet<Employee> employees { get; set; } = null!;
+
          
          
         public IEnumerable<batteries> GetItem()
@@ -169,7 +172,41 @@ namespace RocketApi.Models
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
             });
-        
+        modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.ToTable("employees");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(255)
+                    .HasColumnName("title");
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(255)
+                    .HasColumnName("firstname");
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(255)
+                    .HasColumnName("lastname");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(255)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("created_at");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_at");
+
+            });        
              
             
             modelBuilder.Entity<Building>(entity =>
