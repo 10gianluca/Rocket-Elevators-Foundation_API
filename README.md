@@ -4,7 +4,7 @@ Our API allows th euser to view and change elements from our database using the 
 Postman Download Link: https://www.postman.com/downloads/
 
 
-Postman Collection Link: https://api.postman.com/collections/24446629-d7641b9e-edfa-4a21-a864-71d5a51dbe9f?access_key=PMAT-01GJR3CY7B3X9M30CWMVF3ESE5
+Postman Collection Link: https://api.postman.com/collections/24446629-656b4e36-361d-48f1-99c6-8ca6ba694c4c?access_key=PMAT-01GJ8XF5A9F3EZY1QDC4V1NWRH
 
 -In Postman click the import button
 <img width="1128" alt="2022-11-18 (2)" src="https://user-images.githubusercontent.com/113924900/202872535-3d6af1cb-ad65-48cd-b5e2-335e399adcb0.png">
